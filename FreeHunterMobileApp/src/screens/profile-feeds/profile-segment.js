@@ -5,6 +5,7 @@ import Button from '@atoms/button';
 import Texts from '@atoms/texts';
 import styles from './styles';
 import colors from '../../res/colors';
+import { sinceDate } from '@utils';
 
 class ProfileSegment extends PureComponent {
   constructor(props) {
@@ -30,6 +31,11 @@ class ProfileSegment extends PureComponent {
 
   getCellNumber = () => {
     return this.state.cell ? this.state.cell : '';
+  };
+
+  isNewUser = () => {
+    const { date } = this.state.registered;
+    return sinceDate(date);
   };
 
   getMediumPic = () => {
@@ -88,12 +94,14 @@ class ProfileSegment extends PureComponent {
                   marginBottom: 4
                 }}
               />
-              <Button
-                text={'NEW'}
-                buttonStyle={[styles.nwBtnStyle]}
-                textStyle={[styles.nwBtnTextStyle]}
-                onPress={() => {}}
-              />
+              {this.isNewUser() ? (
+                <Button
+                  text={'NEW'}
+                  buttonStyle={[styles.nwBtnStyle]}
+                  textStyle={[styles.nwBtnTextStyle]}
+                  onPress={() => {}}
+                />
+              ) : null}
             </View>
 
             <View style={{ flex: 1, margin: 8 }}>

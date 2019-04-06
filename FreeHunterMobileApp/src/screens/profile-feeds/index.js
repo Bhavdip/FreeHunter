@@ -13,7 +13,7 @@ import styles from './styles';
 class ProfileFeedsList extends Component {
   constructor(props) {
     super(props);
-    const pageCount = props.navigation.getParam('', 2);
+    const pageCount = props.navigation.getParam('pageCount', 10);
     this.state = {
       pageCount: pageCount,
       randomUsersList: '',
@@ -54,7 +54,7 @@ class ProfileFeedsList extends Component {
     if (!this.state.isLoadMore && !this.state.pageLoading) {
       this.setState({ isLoadMore: true });
       setTimeout(() => {
-        this.props.fetchRandomUserList(10);
+        this.props.fetchRandomUserList(this.state.pageCount);
       }, 2000);
     }
   };
@@ -105,7 +105,7 @@ class ProfileFeedsList extends Component {
    * Life-cycle
    */
   componentWillMount() {
-    this.props.fetchRandomUserList(10);
+    this.props.fetchRandomUserList(this.state.pageCount);
   }
 
   componentWillReceiveProps(newProps) {

@@ -3,7 +3,6 @@
  * @format
  * @flow
  */
-
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
@@ -15,6 +14,12 @@ import Button from '@atoms/button';
 import styles from './styles';
 
 class ProfileCountPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pageCount: 1 + ''
+    };
+  }
   render() {
     return (
       <AndroidBackHandler>
@@ -31,29 +36,28 @@ class ProfileCountPage extends Component {
             />
             <View style={[styles.contentContainer]}>
               <Input
+                maxLength={1}
+                value={this.state.pageCount}
                 placeholder={'Profile Count'}
+                onChangeText={text => {
+                  this.setState({ pageCount: text });
+                }}
                 notes={
                   'Please specify the number of profile you want to display'
                 }
               />
-              <View
-                style={{
-                  width: 100,
-                  position: 'absolute',
-                  bottom: 16,
-                  right: 16
-                }}
-              >
-                <Button
-                  text={'Next'}
-                  buttonStyle={{
-                    width: 100,
-                    marginTop: 10
-                  }}
-                  onPress={() => {
-                    this.props.navigation.navigate('ProfileFeedsPage');
-                  }}
-                />
+              <View style={[styles.nextBtnContainer]}>
+                {this.state.pageCount.length > 0 ? (
+                  <Button
+                    text={'Next'}
+                    buttonStyle={[styles.nextBtnStyle]}
+                    onPress={() => {
+                      this.props.navigation.navigate('ProfileFeedsPage', {
+                        pageCount: this.state.pageCount
+                      });
+                    }}
+                  />
+                ) : null}
               </View>
             </View>
           </View>

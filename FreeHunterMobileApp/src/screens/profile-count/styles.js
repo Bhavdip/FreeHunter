@@ -11,5 +11,15 @@ export default StyleSheet.create({
   contentContainer: {
     ...commonStyle.containerFlexBG,
     ...commonStyle.horizontalPadding
+  },
+  nextBtnContainer: {
+    width: 100,
+    position: 'absolute',
+    bottom: 16,
+    right: 16
+  },
+  nextBtnStyle: {
+    width: 100,
+    marginTop: 10
   }
 });
