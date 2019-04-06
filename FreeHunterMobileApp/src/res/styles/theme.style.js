@@ -2,6 +2,7 @@ import Colors from '../colors/index';
 
 export default {
   WINDOW_BACKGROUND: Colors.windowBackground,
+  ACTION_BAR_BG_COLOR: Colors.white,
   CONTAINER_PADDING: 16,
   FONT_SIZE_TINY: 10, //h0
   FONT_SIZE_SMALL: 12, //h1
@@ -10,8 +11,9 @@ export default {
   FONT_SIZE_EXTRA_LARGE: 18, //h4
   FONT_SIZE_X_LARGE: 22, //h5
   FONT_SIZE_XX_LARGE: 26, //h6,
-  TEXT_DARK_COLOR: 'black',
-  TEXT_WHITE_COLOR: 'white',
+  TEXT_DARK_COLOR: Colors.black,
+  TEXT_WHITE_COLOR: Colors.white,
+  TEXT_PRIMARY_COLOR: Colors.primaryColorA,
   TEXT_INPUT_BORDER_RADIUS: 4,
   BUTTON_PADDING: 14,
   BUTTON_BORDER_RADIUS: 6,

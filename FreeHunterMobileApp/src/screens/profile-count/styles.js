@@ -6,8 +6,10 @@ export default StyleSheet.create({
     ...commonStyle.containerFlexBG
   },
   container: {
+    ...commonStyle.containerFlexBG
+  },
+  contentContainer: {
     ...commonStyle.containerFlexBG,
-    ...commonStyle.horizontalPadding,
-    ...commonStyle.verticalPadding
+    ...commonStyle.horizontalPadding
   }
 });

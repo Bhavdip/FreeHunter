@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "ios-staging-6s": "react-native run-ios --simulator='iPhone 6s'",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
@@ -10,6 +11,7 @@
     "react": "16.8.3",
     "react-native": "0.59.3",
     "react-native-gesture-handler": "^1.0.15",
+    "react-native-svg": "^9.3.7",
     "react-navigation": "^2.11.2",
     "react-navigation-redux-helpers": "^2.0.5",
     "react-redux": "^6.0.0",

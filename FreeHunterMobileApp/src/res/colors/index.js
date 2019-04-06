@@ -17,8 +17,10 @@ export default (colors = {
   secondaryColorB: '#A76A28',
   secondaryColorC: '#7D7A62',
 
+  black: '#000',
   blue: '#589AE7',
   red: '#E25353',
+  white: '#FFFF',
   textPrimaryColor: '#BE9D63',
   textDarkColor: '#363537',
   textLightColor: '#757575',
