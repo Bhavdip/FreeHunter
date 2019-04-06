@@ -20,6 +20,10 @@ export default StyleSheet.create({
     paddingLeft: theme.CONTAINER_PADDING,
     paddingRight: theme.CONTAINER_PADDING
   },
+  verticalPadding: {
+    paddingTop: theme.CONTAINER_PADDING,
+    paddingBottom: theme.CONTAINER_PADDING
+  },
   textInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',

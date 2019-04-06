@@ -20,16 +20,28 @@ export default class App extends Component {
           style={[styles.safeContainer]}
           forceInset={{ bottom: 'always', top: 'never' }}
         >
-          <View style={styles.container}>
+          <View style={[styles.container]}>
             <Input
               placeholder={'Profile Count'}
               notes={'Please specify the number of profile you want to display'}
             />
-            <Button
-              text={'Next'}
-              buttonStyle={{ width: 100 }}
-              onPress={() => {}}
-            />
+            <View
+              style={{
+                width: 100,
+                position: 'absolute',
+                bottom: 16,
+                right: 16
+              }}
+            >
+              <Button
+                text={'Next'}
+                buttonStyle={{
+                  width: 100,
+                  marginTop: 10
+                }}
+                onPress={() => {}}
+              />
+            </View>
           </View>
         </SafeAreaView>
       </AndroidBackHandler>

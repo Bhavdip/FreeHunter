@@ -6,7 +6,8 @@ export default StyleSheet.create({
     ...commonStyle.containerFlexBG
   },
   container: {
+    ...commonStyle.containerFlexBG,
     ...commonStyle.horizontalPadding,
-    marginTop: 100
+    ...commonStyle.verticalPadding
   }
 });
