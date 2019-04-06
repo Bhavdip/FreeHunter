@@ -5,43 +5,34 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
+import { AndroidBackHandler } from '@molecules/back-hoc';
+import Input from '@atoms/input';
+import Button from '@atoms/button';
+import styles from './styles';
 
-const instructions = Platform.select({
-  ios: 'Press Hello Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap RRR on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu'
-});
-
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+      <AndroidBackHandler>
+        <SafeAreaView
+          style={[styles.safeContainer]}
+          forceInset={{ bottom: 'always', top: 'never' }}
+        >
+          <View style={styles.container}>
+            <Input
+              placeholder={'Profile Count'}
+              notes={'Please specify the number of profile you want to display'}
+            />
+            <Button
+              text={'Next'}
+              buttonStyle={{ width: 100 }}
+              onPress={() => {}}
+            />
+          </View>
+        </SafeAreaView>
+      </AndroidBackHandler>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5
-  }
-});

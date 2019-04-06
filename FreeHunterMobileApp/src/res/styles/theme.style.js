@@ -1,0 +1,25 @@
+import Colors from '../colors/index';
+
+export default {
+  WINDOW_BACKGROUND: Colors.windowBackground,
+  CONTAINER_PADDING: 16,
+  FONT_SIZE_TINY: 10, //h0
+  FONT_SIZE_SMALL: 12, //h1
+  FONT_SIZE_MEDIUM: 14, //h2
+  FONT_SIZE_LARGE: 16, //h3
+  FONT_SIZE_EXTRA_LARGE: 18, //h4
+  FONT_SIZE_X_LARGE: 22, //h5
+  FONT_SIZE_XX_LARGE: 26, //h6,
+  TEXT_DARK_COLOR: 'black',
+  TEXT_WHITE_COLOR: 'white',
+  TEXT_INPUT_BORDER_RADIUS: 4,
+  BUTTON_PADDING: 14,
+  BUTTON_BORDER_RADIUS: 6,
+  BUTTON_MIN_HEIGHT: 40,
+  ROUND_BUTTON_RADIUS: 18,
+  ROUND_BUTTON_HEIGHT: 8,
+  ROUND_BTN_MIN_HEIGHT: 28,
+  DEFAULT_BNT_BG: Colors.primaryColorA,
+  DEFAULT_BTN_ENABLE_CL: Colors.primaryColor,
+  DEFAULT_BTN_DISABLE_CL: Colors.primaryLightColor
+};

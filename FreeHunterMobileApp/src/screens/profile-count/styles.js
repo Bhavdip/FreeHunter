@@ -1,9 +1,12 @@
 import { StyleSheet } from 'react-native';
+import commonStyle from '../../../src/res/styles/common.style';
 
 export default StyleSheet.create({
+  safeContainer: {
+    ...commonStyle.containerFlexBG
+  },
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    ...commonStyle.horizontalPadding,
+    marginTop: 100
   }
 });
