@@ -1,5 +1,5 @@
 import { buildHeader, secureHeader, buildBaseUrl } from './request';
-import { logging, logGreen, logWarn } from '@utils';
+import { log } from '@utils';
 
 function getQueryString(params) {
   const esc = encodeURIComponent;
@@ -34,7 +34,7 @@ export const baseCall = async (req, headers) => {
     ? 'BODY::: ' + JSON.stringify(req.body)
     : 'BODY::: EMPTY';
   const strLog = prUrl + '\n' + prMethod + '\n' + prHeader + '\n' + prBody;
-  logging(strLog);
+  log(strLog);
   return fetch(url, {
     method,
     headers,
@@ -44,8 +44,8 @@ export const baseCall = async (req, headers) => {
       return res.json();
     })
     .then(data => {
-      logging('Response:::' + JSON.stringify(data));
-      if (data.success) {
+      if (data) {
+        log('Response:::' + JSON.stringify(data));
         return data;
       }
       throw data;
@@ -64,7 +64,7 @@ export const secureCall = async req => {
 
 // let isTokenRunning = false;
 // const refreshTokenCall = async () => {
-//   logging('refreshTokenCall');
+//   log('refreshTokenCall');
 //   if (isTokenRunning) {
 //     console.warn('Refresh Token is Running');
 //     return;
@@ -73,9 +73,9 @@ export const secureCall = async req => {
 //   const baseUrl = await buildBaseUrl();
 //   const headers = await secureHeader({}, true);
 //   const url = `${baseUrl}/v1/customer/refresh-token`;
-//   logging('refreshTokenCall==============>');
-//   logging(url);
-//   logging(headers);
+//   log('refreshTokenCall==============>');
+//   log(url);
+//   log(headers);
 //   return fetch(url, {
 //     method: 'GET',
 //     headers
@@ -86,7 +86,7 @@ export const secureCall = async req => {
 //     })
 //     .then(response => {
 //       isTokenRunning = false;
-//       logging('Response:::', JSON.stringify(response));
+//       log('Response:::', JSON.stringify(response));
 //       // AsyncStorage.setItem('accessToken', tokenResponse.accessToken);
 //       if (response.status === 200) {
 //         return response.data;

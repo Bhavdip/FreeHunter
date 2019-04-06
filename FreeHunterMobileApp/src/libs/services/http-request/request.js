@@ -1,6 +1,6 @@
 import { log, logGreen, logError } from '@utils';
 const buildBaseUrl = async () => {
-  return 'https://randomuser.me/api/';
+  return 'https://randomuser.me/api?';
 };
 
 const buildHeader = req => {

@@ -1,13 +1,13 @@
 import { createNavigationReducer } from 'react-navigation-redux-helpers';
 import { combineReducers } from 'redux';
 import AppNavigator from '../../AppNavigator';
-import ProfileReducer from '../actions/profile/reducer';
+import UsersReducer from '../actions/user/reducer';
 
 const navReducer = createNavigationReducer(AppNavigator);
 
 const rootReducer = combineReducers({
   nav: navReducer,
-  profile: ProfileReducer
+  users: UsersReducer
 });
 
 export default rootReducer;

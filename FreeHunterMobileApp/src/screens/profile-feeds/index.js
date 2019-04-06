@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import ListView from '@organisms/listview';
 import HeaderNavigation from '@molecules/header-navigation';
 import { SafeAreaView } from 'react-navigation';
+import ProfileSegment from './profile-segment';
 import { AndroidBackHandler } from '@molecules/back-hoc';
+import { fetchRandomUserList } from '@actions/user';
+import { log, logGreen } from '@utils';
 import styles from './styles';
 
 class ProfileFeedsList extends Component {
@@ -12,8 +15,102 @@ class ProfileFeedsList extends Component {
     super(props);
     const pageCount = props.navigation.getParam('', 2);
     this.state = {
-      pageCount: pageCount
+      pageCount: pageCount,
+      randomUsersList: '',
+      showProgressBar: false,
+      isLoadMore: false
     };
+  }
+
+  /**
+   * Other Methods
+   */
+
+  showHeaderTitle = () => {
+    const { randomUsersList } = this.state;
+    const result =
+      randomUsersList && randomUsersList.length > 0
+        ? `Profile Count: ` + randomUsersList.length
+        : `Profile Count: 0`;
+    return result;
+  };
+
+  renderUserItem = ({ item, index }) => {
+    return <ProfileSegment profileItem={item} />;
+  };
+
+  renderFooter = () => {
+    if (!this.state.isLoadMore) return null;
+    return <ActivityIndicator />;
+  };
+
+  handleLoadMore = () => {
+    log(
+      'handleLoadMore::' +
+        this.state.isLoadMore +
+        ':::' +
+        this.state.pageLoading
+    );
+    if (!this.state.isLoadMore && !this.state.pageLoading) {
+      this.setState({ isLoadMore: true });
+      setTimeout(() => {
+        this.props.fetchRandomUserList(10);
+      }, 2000);
+    }
+  };
+  /**
+   * handle
+   */
+
+  onErrorHandle = (props, newProps) => {
+    const { users } = props;
+    if (!users.randomUsersListFail && newProps.users.randomUsersListFail) {
+      this.setState({ isLoadMore: false });
+      const { randomUsersListFail } = newProps.users;
+      logging(randomUsersListFail);
+    }
+  };
+
+  onResultRandomUsersList = (props, newProps) => {
+    const { users } = props;
+    if (!users.isFetching && newProps.users.isFetching) {
+      if (this.state.randomUsersList.length === 0) {
+        this.setState({ pageLoading: true });
+      } else {
+        this.setState({ isLoadMore: true });
+      }
+    }
+    if (users.isFetching && !newProps.users.isFetching) {
+      this.setState({ isLoadMore: false });
+    }
+    if (!users.randomUsersList && newProps.users.randomUsersList) {
+      this.setState({ isLoadMore: false });
+      const { randomUsersList } = newProps.users;
+      if (randomUsersList && randomUsersList.length > 0) {
+        this.setState({
+          pageLoading: false,
+          randomUsersList: [...this.state.randomUsersList, ...randomUsersList]
+        });
+      } else {
+        this.setState({
+          pageLoading: false,
+          randomUsersList: []
+        });
+      }
+      logGreen(JSON.stringify(randomUsersList));
+    }
+  };
+
+  /**
+   * Life-cycle
+   */
+  componentWillMount() {
+    this.props.fetchRandomUserList(10);
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.onErrorHandle(this.props, newProps);
+    this.onResultRandomUsersList(this.props, newProps);
   }
 
   render() {
@@ -27,12 +124,22 @@ class ProfileFeedsList extends Component {
             <HeaderNavigation
               displayBack={true}
               isLogoVisible={false}
-              headerTitle={'Profile Filtering'}
+              headerTitle={this.showHeaderTitle()}
               onLeftPress={() => {
                 this.props.navigation.goBack();
               }}
             />
-            <ListView />
+            <View style={[styles.contentContainer]}>
+              <ListView
+                fullLoaderView={true}
+                isLoading={this.state.pageLoading}
+                data={this.state.randomUsersList}
+                renderItem={this.renderUserItem}
+                ListFooterComponent={this.renderFooter}
+                onEndReachedThreshold={0.5}
+                onEndReached={this.handleLoadMore}
+              />
+            </View>
           </View>
         </SafeAreaView>
       </AndroidBackHandler>
@@ -41,9 +148,12 @@ class ProfileFeedsList extends Component {
 }
 
 const mapStateToProps = globalState => {
-  return {};
+  const { users } = globalState;
+  return { users };
 };
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  fetchRandomUserList
+};
 
 export default connect(
   mapStateToProps,

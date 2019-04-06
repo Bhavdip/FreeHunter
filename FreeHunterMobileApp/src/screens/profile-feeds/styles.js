@@ -7,5 +7,18 @@ export default StyleSheet.create({
   },
   container: {
     ...commonStyle.containerFlexBG
+  },
+  contentContainer: {
+    ...commonStyle.containerFlexBG,
+    ...commonStyle.horizontalPadding
+  },
+  nwBtnStyle: {
+    width: 55,
+    height: 25,
+    minHeight: 0
+  },
+  nwBtnTextStyle: {
+    fontSize: 12,
+    fontWeight: '700'
   }
 });
