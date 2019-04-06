@@ -36,5 +36,9 @@ export default StyleSheet.create({
   button: { width: 40, height: 40 },
   buttonImage: { width: 35, height: 35 },
   drawer: { width: 40, height: 40 },
-  drawerImage: { width: 26, height: 18 }
+  drawerImage: { width: 26, height: 18 },
+  headerLine: {
+    height: 0.3,
+    backgroundColor: 'lightgrey'
+  }
 });

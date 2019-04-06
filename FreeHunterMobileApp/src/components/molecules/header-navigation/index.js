@@ -12,6 +12,7 @@ export default (HeaderNavigation = props => {
   const isLogoVisible = props.isLogoVisible;
   const isTitleVisible = props.headerTitle ? props.headerTitle : false;
   const menuDrawer = props.menuDrawerImage ? props.menuDrawerImage : false;
+
   return (
     <View>
       <View style={[styles.statusBarContainer, props.actionBarStyle]} />
@@ -75,6 +76,7 @@ export default (HeaderNavigation = props => {
           <Texts value={props.subTitle} textStyle={styles.toolBarTextStyle} />
         </View>
       ) : null}
+      {!props.showActionBarLine ? <View style={[styles.headerLine]} /> : null}
     </View>
   );
 });
