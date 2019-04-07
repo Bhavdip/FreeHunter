@@ -1,5 +1,7 @@
 # FreeHunter
 
+[![Build status](https://build.appcenter.ms/v0.1/apps/bfc05bc9-5474-43a2-a454-a45ca167157b/branches/master/badge)](https://appcenter.ms)
+
 This is the Propose Mobile Application for FreeHunter Organization. Its is private repo and only access by the authorize developer.
 
 ##### 1.1 Please propose a best practice for creating and managing page navigation in any React Native Social Network applications.How did you manage the structure in different main pages and subpages and integrate this with deep linking and push notification? Please explain the reasons and philosophies behind.
