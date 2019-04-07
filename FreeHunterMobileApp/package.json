@@ -3,9 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "ios-staging-6s": "react-native run-ios --simulator='iPhone 6s'",
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "ios-staging-6s": "react-native run-ios --simulator='iPhone 6s'",
+    "android-release-debug": "mkdir -p android/app/src/main/assets && rm -rf android/app/build && react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug && cd ..",
+    "android-release-prod": "cd android && ./gradlew assembleRelease && cd .."
   },
   "dependencies": {
     "moment": "^2.24.0",
