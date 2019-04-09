@@ -17,7 +17,6 @@ class ProfileFeedsList extends Component {
     this.state = {
       pageCount: pageCount,
       randomUsersList: '',
-      showProgressBar: false,
       isLoadMore: false
     };
   }
@@ -58,6 +57,7 @@ class ProfileFeedsList extends Component {
       }, 2000);
     }
   };
+
   /**
    * handle
    */
@@ -90,11 +90,6 @@ class ProfileFeedsList extends Component {
         this.setState({
           pageLoading: false,
           randomUsersList: [...this.state.randomUsersList, ...randomUsersList]
-        });
-      } else {
-        this.setState({
-          pageLoading: false,
-          randomUsersList: []
         });
       }
       logGreen(JSON.stringify(randomUsersList));
